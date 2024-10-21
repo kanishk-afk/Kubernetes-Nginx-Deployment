@@ -1,22 +1,41 @@
 How to run this file:-
 
 Prerequisites:-
-Install Minikube: Follow the official Minikube installation guide to install Minikube.
-Install kubectl: This is the command-line tool for interacting with Kubernetes. You can find installation instructions in the Kubernetes documentation.
+Install Minikube: Follow the official Minikube installation guide to install Minikube. 
+Install kubectl: This is the command-line tool for interacting with Kubernetes. You can find installation instructions in the Kubernetes documentation.                                      
 Install VM: Minikube requires a hypervisor to create a VM.
 
 Now follow these steps:-
 
 Step 1:- Start Minikube: Open a terminal and run the following command to start Minikube. This will create a local Kubernetes cluster.
-         "minikube start".
+ Command:- "minikube start".
 
 Step 2:- Clone the Project Repository: Clone your project repository to your local machine.
-         git clone https://github.com/kanishk-afk/Kubernetes-Nginx-Deployment/
+ Command:-  git clone https://github.com/kanishk-afk/Kubernetes-Nginx-Deployment/
 
 Step 3:- Navigate to the Project Directory:
          
-Step 4:-Apply the Kubernetes Deployment:
-        kubectl apply -f
+Step 4:- Apply the Kubernetes Deployment:
+Command:- kubectl apply -f nginx-deployment.yml
+
+Step 5:- Expose the Deployment as a Service:
+Command:- kubectl expose deployment nginx-deployment.yml --type=NodePort --port=80
+
+Step 6:- Access the Nginx Server
+Command:- minikube service nginx-deployment.yml --url               #You will se a nginx welcome page
+
+Step 7:- Check the Deployment: You can check the status the deployment and pods using:
+Command:- kubectl logs nginx-yml             # replace pod name with your name given to the pods
+
+Step 8:- Stopping Minikube (When you are done testing the project, you can stop the Minikube cluster)
+Command:- minikube stop
+
+
+
+
+
+         
+
 
 
 
