@@ -1,0 +1,44 @@
+apiVersion: apps/v1                                                      # v1-version
+kind: Deployment
+metadata:
+  name: nginx-deployment                                                 # Name of the deployment
+  labels:                                                                # Labels for categorizing the deployment
+    app: nginx
+    environment: development                                             # Environment label for easier identification
+  annotations:                                                           # Additional metadata about the deployment
+    description: "Deployment of Nginx web server using Kubernetes"       # Brief description
+spec:
+  replicas: 2                                                            # Number of replicas (pods) to run
+  selector:                                                              # Selector for identifying the pods managed by this deployment
+    matchLabels:
+      app: nginx                                                         # Must match the labels of the pod template
+  template:                                                              # Template for the pod
+    metadata:
+      labels:
+        app: nginx                         # Labels for the pod
+        version: v1                        # Version label for managing releases
+    spec:
+      containers:                          # Specification of the container
+      - name: nginx                        # Name of the container
+        image: nginx:latest                # Docker image to use
+        ports:
+        - containerPort: 80                # Port exposed by the container
+        resources:                         # Resource requests and limits for the container
+          requests:
+            memory: "64Mi"                 # Minimum memory requirement
+            cpu: "250m"                    # Minimum CPU requirement
+          limits:
+            memory: "128Mi"                # Maximum memory limit
+            cpu: "500m"                    # Maximum CPU limit
+        livenessProbe:                      # Liveness probe configuration
+          httpGet:
+            path: /                        # Path to check
+            port: 80                       # Port to check
+          initialDelaySeconds: 20          # Delay before the first check
+          periodSeconds: 10                 # Frequency of checks
+        readinessProbe:                     # Readiness probe configuration
+          httpGet:
+            path: /                        # Path to check for readiness
+            port: 80                       # Port to check for readiness
+          initialDelaySeconds: 5           # Delay before the first check
+          periodSeconds: 5                  # Frequency of checks
