@@ -1,5 +1,24 @@
 How to run this file:-
 
-Step 1:- Clone this repository:
-git clone https://github.com/
+Prerequisites:-
+Install Minikube: Follow the official Minikube installation guide to install Minikube.
+Install kubectl: This is the command-line tool for interacting with Kubernetes. You can find installation instructions in the Kubernetes documentation.
+Install VM: Minikube requires a hypervisor to create a VM.
+
+Now follow these steps:-
+
+Step 1:- Start Minikube: Open a terminal and run the following command to start Minikube. This will create a local Kubernetes cluster.
+         "minikube start".
+
+Step 2:- Clone the Project Repository: Clone your project repository to your local machine.
+         git clone https://github.com/kanishk-afk/Kubernetes-Nginx-Deployment/
+
+Step 3:- Navigate to the Project Directory:
+         
+Step 4:-Apply the Kubernetes Deployment:
+        kubectl apply -f
+
+
+
+
 
